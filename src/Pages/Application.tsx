@@ -3,7 +3,7 @@ import { Route, Routes, useNavigate } from 'react-router-dom';
 import Thread from './AppliactionPages/Thread';
 import { io } from 'socket.io-client';
 
-const socket = io("http://192.168.1.27:3000");
+const socket = io("https://api.alpinezy.com");
 
 const Application = () => {
     const nav = useNavigate();
