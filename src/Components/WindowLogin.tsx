@@ -5,7 +5,7 @@ import "./CSS/WindowLogin.css";
 
 const url = "http://192.168.1.27:3000"
 
-const WindowLogin = (comp: { login: 'signin' | 'signup' }) => {
+const WindowLogin = (props: { login: 'signin' | 'signup' }) => {
     //SignIn
     const [emailSI, setEmailSI] = useState<string>("");
     const [passwordSI, setPasswordSI] = useState<string>("");
@@ -37,6 +37,7 @@ const WindowLogin = (comp: { login: 'signin' | 'signup' }) => {
         }).then(res => {
             document.getElementById("error")!.innerHTML = "";
             localStorage.setItem("token", res.data.token)
+            nav("/app/thread")
         }).catch(err => {
             document.getElementById("error")!.innerHTML = "E-mail ou mot de passe incorrect";
             console.error(err);
@@ -60,6 +61,7 @@ const WindowLogin = (comp: { login: 'signin' | 'signup' }) => {
         }).then(res => {
             document.getElementById("error")!.innerHTML = "";
             localStorage.setItem("token", res.data.token)
+            nav("/app/thread")
         }).catch(err => {
             document.getElementById("error")!.innerHTML = "Error";
             console.log(err)
@@ -67,57 +69,44 @@ const WindowLogin = (comp: { login: 'signin' | 'signup' }) => {
     }
 
     return (
-        <div className='box'>
+        <div id='underbox'>
+            <div className='box'>
+                <h1>{props.login === "signin" ? "Se connecter" : "S'inscrire"}</h1>
 
-            {/* Name de la page */}
-            <div className='title'>
-                <h1>{comp.login === "signin" ? "Se connecter" : "S'inscrire"}</h1>
+                {
+                    props.login === "signin" ?
+                        (
+                            <div>
+                                <form>
+                                    <input type="email" className='inputLogin' placeholder='E-mail' value={emailSI} onChange={e => setEmailSI(e.target.value)} />
+                                    <br />
+                                    <input type="password" className='inputLogin' placeholder='Mot de passe' value={passwordSI} onChange={e => setPasswordSI(e.target.value)} />
+                                    <br />
+                                    <input type="button" value="Se connecter" className='buttonLogin' onClick={SignIn} />
+                                </form>
+                            </div>
+                        ) : (
+                            <div>
+                                <form>
+                                    <input type="text" className='inputLogin' placeholder='Pseudo (e.g. Josee)' />
+                                    <br />
+                                    <input type={"number"} className='inputLogin' placeholder='Code utilisateur (e.g. 1578)' />
+                                    <br />
+                                    <input type="email" className='inputLogin' placeholder='E-mail (e.g. josee@diament.com)' />
+                                    <br />
+                                    <input type="password" className='inputLogin' placeholder='Mot de passe' />
+                                    <br />
+                                    <input type="button" value="Se connecter" className='buttonLogin' onClick={SignUp} />
+                                </form>
+                            </div>
+                        )
+                }
+                <span id='error'></span>
             </div>
-
-            {
-                comp.login === "signin" ?
-                    (
-                        <div className='FormSignIn'>
-                            <div>
-                                <h4>E-mail</h4>
-                                <input type={"email"} value={emailSI} onChange={e => setEmailSI(e.target.value)} placeholder={"josee@diament.com"} />
-                            </div>
-                            <div>
-                                <h4>Mot de passe</h4>
-                                <input type={"password"} value={passwordSI} onChange={e => setPasswordSI(e.target.value)} placeholder={"MonMotDePassBLBLBL2530"} />
-                            </div>
-                            <input type={"button"} onClick={SignIn} value={"Confirmer"} id={"connectButton"} />
-                            <br />
-                            <span id='error'></span>
-                        </div>
-                    ) : (
-                        <div className='FormSignIn'>
-                            <div>
-                                <h4>Pseudo</h4>
-                                <input type={"text"} value={username} onChange={e => setUsername(e.target.value)} placeholder={'Ex: Josee34'} />
-                            </div>
-                            <div>
-                                <h4>Code utilisateur</h4>
-                                <input type={"number"} value={user_code} onChange={e => setUser_code(e.target.value)} placeholder={"Ex: 2530"} />
-                            </div>
-                            <div>
-                                <h4>E-mail</h4>
-                                <input type={"email"} value={emailSU} onChange={e => setEmailSU(e.target.value)} placeholder={"Ex: josee34@diament.com"} />
-                            </div>
-                            <div>
-                                <h4>Mot de passe</h4>
-                                <input type={"password"} value={passwordSU} onChange={e => setPasswordSU(e.target.value)} placeholder={"Ex: MonMotDePasse2530"} />
-                            </div>
-                            <input type={"button"} onClick={SignUp} value={"Confirmer"} id={"connectButton"} />
-                            <br />
-                            <span id='error'></span>
-                        </div>
-                    )
-            }
-            <div className='link'>
-                <a href={comp.login === "signin" ? "/signup" : "/signin"}>{comp.login === "signin" ? "Tu souhaites t'inscrire ?" : "Tu as déjà un compte ?"}</a>
+            <div id='links'>
+                <a href={props.login === "signin" ? "/signup" : "/signin"}>{props.login === "signin" ? "S'inscrire ?" : "Se connecter ?"}</a>
+                <a href={props.login === "signin" ? "" : ""} title='Ne fonctionne pas pour le moment'>{props.login === "signin" ? "Mot de passe oublié ?" : "Aide d'inscription ?"}</a>
             </div>
-
         </div>
     );
 };
