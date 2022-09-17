@@ -24,7 +24,7 @@ const WindowLogin = (props: { login: 'signin' | 'signup' }) => {
     }, []);
 
     //Fonction de connexion
-    const SignIn = async () => {
+    const SignIn = async (): Promise<string | void> => {
         if (!emailSI || !passwordSI) return document.getElementById("error")!.innerHTML = "Veuillez remplire tous les champs";
 
         await axios({
@@ -45,8 +45,8 @@ const WindowLogin = (props: { login: 'signin' | 'signup' }) => {
     };
 
     //fonction d'inscription
-    const SignUp = async () => {
-        if (!emailSU || !passwordSU || !user_code || !username) return document.getElementById("error")!.innerHTML = "Veuillez remplire tous les champs";
+    const SignUp = async (): Promise<string | void> => {
+        if (!emailSU || !passwordSU || !user_code || !username) return document.getElementById("error")!.innerHTML = "Veuillez remplir tous les champs";
         if (isNaN(Number(user_code)) || user_code.length < 4 || user_code.length > 4) return document.getElementById("error")!.innerHTML = "Le code utilisateur doit être de 4 chiffres";
 
         await axios({
@@ -63,7 +63,7 @@ const WindowLogin = (props: { login: 'signin' | 'signup' }) => {
             localStorage.setItem("token", res.data.token)
             nav("/app/thread")
         }).catch(err => {
-            document.getElementById("error")!.innerHTML = "Error";
+            document.getElementById("error")!.innerHTML = err.response.data;
             console.log(err)
         })
     }
@@ -88,13 +88,13 @@ const WindowLogin = (props: { login: 'signin' | 'signup' }) => {
                         ) : (
                             <div>
                                 <form>
-                                    <input type="text" className='inputLogin' placeholder='Pseudo (e.g. Josee)' />
+                                    <input type="text" className='inputLogin' placeholder='Pseudo (e.g. Josee)' value={username} onChange={e => setUsername(e.target.value)} />
                                     <br />
-                                    <input type={"number"} className='inputLogin' placeholder='Code utilisateur (e.g. 1578)' />
+                                    <input type={"number"} className='inputLogin' placeholder='Code utilisateur (e.g. 1578)' value={user_code} onChange={e => setUser_code(e.target.value)} />
                                     <br />
-                                    <input type="email" className='inputLogin' placeholder='E-mail (e.g. josee@diament.com)' />
+                                    <input type="email" className='inputLogin' placeholder='E-mail (e.g. josee@diament.com)' value={emailSU} onChange={e => setEmailSU(e.target.value)} />
                                     <br />
-                                    <input type="password" className='inputLogin' placeholder='Mot de passe' />
+                                    <input type="password" className='inputLogin' placeholder='Mot de passe' value={passwordSU} onChange={e => setPasswordSU(e.target.value)} />
                                     <br />
                                     <input type="button" value="Se connecter" className='buttonLogin' onClick={SignUp} />
                                 </form>

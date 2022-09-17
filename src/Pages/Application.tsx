@@ -1,26 +1,27 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import Thread from './AppliactionPages/Thread';
-import { io } from 'socket.io-client';
+import { io, Socket } from 'socket.io-client';
 
-const socket = io("https://api.alpinezy.com");
 
 const Application = () => {
+    const [socket, setSocket] = useState<Socket | null>(null)
     const nav = useNavigate();
     useEffect(() => {
         if (!localStorage.getItem("token")) {
             nav("/signin");
-        };
+        }
+        //WebSocket
+        const newSocket = io("http://localhost:3000", {auth:{"token":"kfjdsf"}})
+        setSocket(newSocket)
         return () => {
-            socket.on("connect", () => {
-                socket.emit("user_connexion", ({token:localStorage.getItem("token")}))
-            })
-        };
-    },[])
+            newSocket.close();
+        }
+    },[setSocket])
 
     return (
         <Routes>
-            <Route path='thread' element={<Thread />} />
+            <Route path='thread' element={<Thread socket={socket} />} />
         </Routes>
     );
 };
