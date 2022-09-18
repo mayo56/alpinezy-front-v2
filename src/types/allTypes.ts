@@ -1,7 +1,11 @@
 
 export type UserMe = {
-    user_id:string, username:string, user_code:string;
-    flags_list: Flags[] | string[]; 
+    username: string; user_id: string; user_code: string;
+    system: boolean;
+    avatar_url: string; avatar_id: string;
+    banner_url: string; banner_id: string;
+    server_list:string, friends_list:string;
+    flags_list: Array<Flags>;
 }
 
 export type Flags = {

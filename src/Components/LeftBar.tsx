@@ -50,8 +50,8 @@ const LeftBar = (props: {user?:UserMe}) => {
                                     props.user?.flags_list.map(e => {
 
                                         return (
-                                            <div>
-                                                <svg viewBox='0 0 100 100' style={{width:"20px", paddingTop:"5px"}}>
+                                            <div key={e.flag_id}>
+                                                <svg viewBox='0 0 100 100' style={{width:"20px", paddingTop:"5px", paddingRight:"5px"}}>
                                                     <path d='M0 0 L100 100 M0 100 L100 0' stroke='red' strokeWidth={10} />
                                                 </svg>
                                             </div>
@@ -86,7 +86,7 @@ const LeftBar = (props: {user?:UserMe}) => {
 
                     <div>
                         <div id='friendsList' style={{ display: "none" }}>
-                            <p>Liste</p>
+                            <p>Add Friends</p>
                         </div>
                     </div>
 
@@ -101,7 +101,8 @@ const LeftBar = (props: {user?:UserMe}) => {
 
                     <div>
                         <div id='serverList' style={{ display: "none" }}>
-                            <p>Liste</p>
+                            <p>Add Servers</p>
+                            
                         </div>
                     </div>
 

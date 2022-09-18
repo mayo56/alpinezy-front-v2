@@ -69,6 +69,7 @@
 
 .listBadges {
     padding: 0;
+    display: flex;
 }
 
 /* Volet pour le menu */
