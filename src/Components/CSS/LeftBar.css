@@ -1,0 +1,153 @@
+/* Paramètres généraux */
+.leftBar {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+
+/* Left bar card et menu généraux */
+.insideLeftBar {
+    width: 50%;
+}
+
+.underUserCard {
+    background-color: #505050;
+    border-radius: 10px;
+}
+
+.userCard {
+    width: 300px;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    background-color: #404040;
+}
+
+.userCard img {
+    width: 25%;
+    border-radius: 100%;
+}
+
+/*Dans la card*/
+.user_info {
+    padding-top: 2px;
+    padding-inline: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.username {
+    font-weight: 700;
+    font-size: 20px;
+}
+.user_code {
+    color: #AAAAAA;
+    font-weight: 500;
+    font-size: 12px;
+}
+/*------------------*/
+
+.menuLinks_Card {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+}
+
+.menuLinks_Card a {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.menuLinks_Card a:hover {
+    background-color: gray;
+}
+
+.listBadges {
+    padding: 0;
+}
+
+/* Volet pour le menu */
+#flap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 7px;
+}
+
+#flap div {
+    cursor: pointer;
+    background-color: #707070;
+    border-radius: 20px;
+    height: 10px;
+    width: 40%;
+}
+
+#flap div:hover {
+    background-color: #757575;
+}
+
+/* Liste amis */
+.underListAmis {
+    margin-top: 20px;
+    background-color: #505050;
+    border-radius: 10px;
+    user-select: none;
+}
+
+.underListAmis div {
+    padding: 10px;
+}
+
+#friendsListeName {
+    cursor: pointer;
+    font-weight: 700;
+    background-color: #404040;
+    border-radius: 10px;
+}
+
+#friendsListeName:hover {
+    background-color: #353535;
+}
+
+#friendsList {
+    display: none;
+    padding: 0;
+    flex-direction: column;
+}
+
+
+
+/* Liste Serveurs */
+
+.underListServer {
+    margin-top: 20px;
+    background-color: #505050;
+    border-radius: 10px;
+    user-select: none;
+}
+
+.underListServer div {
+    padding: 10px;
+}
+
+#serverListeName {
+    cursor: pointer;
+    font-weight: 700;
+    background-color: #404040;
+    border-radius: 10px;
+}
+
+#serverListeName:hover {
+    background-color: #353535;
+}
+
+#serverList {
+    display: none;
+    padding: 0;
+    flex-direction: column;
+}

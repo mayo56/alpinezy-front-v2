@@ -5,23 +5,30 @@ import { io, Socket } from 'socket.io-client';
 
 
 const Application = () => {
-    const [socket, setSocket] = useState<Socket | null>(null)
+    const [socket, setSocket] = useState<Socket>()
     const nav = useNavigate();
     useEffect(() => {
         if (!localStorage.getItem("token")) {
             nav("/signin");
         }
         //WebSocket
-        const newSocket = io("http://localhost:3000", {auth:{"token":"kfjdsf"}})
+        const newSocket = io("http://localhost:3000", { auth: { "token": localStorage.getItem("token") } })
         setSocket(newSocket)
         return () => {
             newSocket.close();
         }
-    },[setSocket])
+    }, [setSocket])
 
     return (
         <Routes>
-            <Route path='thread' element={<Thread socket={socket} />} />
+            {
+                socket ?
+                    (
+                        <Route path='thread' element={<Thread socket={socket!} />} />
+                    ) : (
+                        <></>
+                    )
+            }
         </Routes>
     );
 };
