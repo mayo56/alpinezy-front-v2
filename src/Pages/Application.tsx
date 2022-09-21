@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
-import Thread from './AppliactionPages/Thread';
 import { io, Socket } from 'socket.io-client';
+import MainApp from './AppliactionPages/MainApp';
 
 
 const Application = () => {
@@ -24,7 +24,7 @@ const Application = () => {
             {
                 socket ?
                     (
-                        <Route path='thread' element={<Thread socket={socket!} />} />
+                        <Route path='*' element={<MainApp socket={socket} />} />
                     ) : (
                         <></>
                     )

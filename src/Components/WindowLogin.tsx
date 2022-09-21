@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import "./CSS/WindowLogin.css";
 
-const url = "https://api.alpinezy.com"
+const url = "http://localhost:3000"
 
 const WindowLogin = (props: { login: 'signin' | 'signup' }) => {
     //SignIn

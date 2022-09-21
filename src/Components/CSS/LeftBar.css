@@ -32,20 +32,27 @@
 
 /*Dans la card*/
 .user_info {
+    max-width: 70%;
     padding-top: 2px;
     padding-inline: 10px;
     display: flex;
     flex-direction: column;
 }
+
 .username {
     font-weight: 700;
     font-size: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
+
 .user_code {
     color: #AAAAAA;
     font-weight: 500;
     font-size: 12px;
 }
+
 /*------------------*/
 
 .menuLinks_Card {

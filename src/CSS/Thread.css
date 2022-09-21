@@ -1,6 +1,45 @@
-.threadTab {
-    display: grid;
-    grid-template-columns: 30% 70%;
-    height: 100vh;
-    color: white;
+.threadApp {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.threadPost {
+    max-width: 500px;
+    border-radius: 10px;
+    background-color: #505050;
+}
+
+.threadPostUser {
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #404040;
+    font-weight: 700;
+    display: flex;
+}
+
+.threadPostUser img {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+}
+
+.intoThreadPostUser {
+    padding-inline: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.threadPostContent {
+    padding: 10px;
+}
+
+#threadPostTitle {
+    padding-bottom: 10px;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+#threadPost_ContentText {
+    overflow-wrap: break-word;
 }
